@@ -1,5 +1,6 @@
 from decimal import *
 
+
 # Moments
 
 def Moment_r(data,r):
@@ -359,6 +360,30 @@ def Normale_va(mu,sigma2,taille):
 
 #
 
+#densite loi weibull 
+
+def Weibull_densite(beta,sigma,c,alpha):
+    import sys
+    import numpy
+    
+    if not sys.warnoptions:
+        import warnings
+        warnings.simplefilter("ignore")
+    
+    nb_point=200
+    # max de l'axe des x
+    x_max=c+sigma*numpy.power(-numpy.log(1-alpha),1.0/beta)
+    
+    #intervalle = abscisse
+    #y=densité=ordonnée 
+    
+    intervalle=[c+(x_max-c)*i/(nb_point-1) for i in range(nb_point)]
+    
+    K=beta/(1.0*sigma)
+    y=[K*numpy.power((x-c)/sigma,beta-1)*numpy.exp(-numpy.power((x-c)/sigma,beta)) for x in intervalle]
+    
+    return intervalle, y
+
 ###########################################################################
 
 # Ecrire le script d'un graph en format chart.js (une courbe)
@@ -380,22 +405,14 @@ def Ecrire_Chartjs_graph(nom_script,nom_graph,titre_graph,data):
     f_js.write("         datasets: [{ \n")
     f_js.write("         label: \"\",\n")
     f_js.write("         data: %s,\n"%(Ordonnees))
-    f_js.write("         borderColor: '#0d6efd',\n")
+    f_js.write("         borderColor: '#fc8403',\n")
     f_js.write("         borderWidth: 4,\n")
     f_js.write("         pointRadius: 0,\n")
     f_js.write("         }] \n")
     f_js.write("       },\n")
     f_js.write("     options: {\n")
-    f_js.write("                plugins: {\n")
-    f_js.write("                    legend: {\n")
-    f_js.write("                        display: false\n")
-    f_js.write("                    },\n")
-    f_js.write("                    title: {\n")
-    f_js.write("                        display: true,\n")
-    f_js.write("                        text: \"%s\",\n"%(titre_graph))
-    f_js.write("                        fontSize: 19,\n")
-    f_js.write("                        fontColor: \"#2a2d90\"\n")
-    f_js.write("                        }\n")
+    f_js.write("                legend: {\n")
+    f_js.write("                    display: false\n")
     f_js.write("                },\n")
     f_js.write("                scales: {\n")
     f_js.write("                    x: {\n")
@@ -405,6 +422,12 @@ def Ecrire_Chartjs_graph(nom_script,nom_graph,titre_graph,data):
     f_js.write("                    }\n")
     f_js.write("                },\n")
     f_js.write("                responsive: true,\n")
+    f_js.write("                title: {\n")
+    f_js.write("                        display: true,\n")
+    f_js.write("                        text: \"%s\",\n"%(titre_graph))
+    f_js.write("                        fontSize: 19,\n")
+    f_js.write("                        fontColor: \"#2a2d90\"\n")
+    f_js.write("                        },\n")
     f_js.write("                 tooltips: {\n")
     f_js.write("                          mode: 'index',\n")
     f_js.write("                          intersect: true\n")
