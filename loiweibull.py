@@ -7,7 +7,7 @@ from librairie_chartjs import *
 app = Flask(__name__)
 
 
-def Weibull_densite(beta,sigma,c,alpha=0.99):
+def Weibull_densite(beta,sigma,c,alpha):
     if not sys.warnoptions:
         import warnings
         warnings.simplefilter("ignore")
@@ -31,13 +31,15 @@ def courbeweibull():
     beta = 2
     sigma = 7
     c = 0
+    alpha = 0.98
 
     if request.method == 'POST':
         beta = float(request.form['beta'])
         sigma = float(request.form['sigma'])
         c = float(request.form['c'])
+        alpha = float(request.form['alpha'])
 
-    data = Weibull_densite(beta,sigma,c)
+    data = Weibull_densite(beta,sigma,c, alpha)
 
     Nom_script="Graphscript"
     ID_graphe="Graphid"
@@ -49,6 +51,7 @@ def courbeweibull():
                             beta = beta,
                             sigma = sigma,
                             c = c,
+                            alpha = alpha,
                             graphe = graphe,
                             Nom_script=Nom_script,
                             ID_graphe=ID_graphe,

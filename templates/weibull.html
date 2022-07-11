@@ -82,6 +82,7 @@
         <span class="parametres">\(\beta\)</span> = {{ beta }} <br>
         <span class="parametres">\(\sigma\)</span> = {{ sigma }} <br>
         <span class="parametres">c</span> = {{ c }}
+        <span class="parametres">\(\alpha\)</span> = {{ alpha }}
       </p>
       <h5>Changez les paramètres :</h5></p>
       <form action="{{ url_for('courbeweibull') }}" method="post">
@@ -103,6 +104,12 @@
           <label class="input-group-text col-sm-3 col-form-label" for="c">c</label>
           <div class="col-sm-8">
             <input type="text" class="form-control" id="c" name="c" value="{{ c }}">
+          </div>
+        </div>
+        <div class="input-group">
+          <label class="input-group-text col-sm-3 col-form-label" for="alpha">\(\alpha\)</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="alpha" name="alpha" value="{{ alpha }}">
           </div>
         </div>
         <br>
