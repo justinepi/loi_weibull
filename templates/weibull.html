@@ -76,9 +76,9 @@
 
     <div class="formulaire">
       <h5>Paramètres actuels: </h5> <br>
-        \(\beta\) = {{ beta }} <br>
-        \(\sigma\) = {{ sigma }} <br>
-        c= {{ c }}
+        <span class="parametres">\(\beta\)</span> = {{ beta }} <br>
+        <span class="parametres">\(\sigma\)</span> = {{ sigma }} <br>
+        <span class="parametres">c</span> = {{ c }}
       </p>
       <h5>Changez les paramètres :</h5></p>
       <form action="{{ url_for('courbeweibull') }}" method="post">
