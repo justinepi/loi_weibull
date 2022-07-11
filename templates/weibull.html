@@ -23,20 +23,6 @@
           flex-direction: row;
         }
 
-        @media (max-width: 50%) {
-          .container {
-            flex-direction: column;
-          }
-
-          .formulaire {
-          width: 50%;
-          padding: 10px;
-          padding-left: 40px;
-          border-top: 2px solid #212529;
-          border-left: 0px;
-        }
-        }
-
         .graph {
           width: 50%;
           padding: 20px;
@@ -54,9 +40,19 @@
 
         }
 
-      .parametres {
-        color:#0d6efd
-      }
+        @media (max-width: 50%) {
+          .container {
+            flex-direction: column;
+          }
+
+          .formulaire {
+          width: 50%;
+          padding: 10px;
+          padding-left: 40px;
+          border-top: 2px solid #212529;
+          border-left: 0px;
+        }
+        }
 
       </style>
     </head>
@@ -76,9 +72,9 @@
 
     <div class="formulaire">
       <h5>Paramètres actuels: </h5> <br>
-        <span class="parametres">\(\beta\)</span> = {{ beta }} <br>
-        <span class="parametres">\(\sigma\)</span> = {{ sigma }} <br>
-        <span class="parametres">c</span> = {{ c }}
+        \(\beta\) = {{ beta }} <br>
+        \(\sigma\) = {{ sigma }} <br>
+        c = {{ c }}
       </p>
       <h5>Changez les paramètres :</h5></p>
       <form action="{{ url_for('courbeweibull') }}" method="post">
