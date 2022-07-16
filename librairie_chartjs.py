@@ -393,7 +393,6 @@ def Ecrire_Chartjs_graph(nom_script,nom_graph,titre_graph,data):
     nom_fich="./static/js/"+str(nom_script)+".js"
     
     f_js = open(nom_fich, "w")
-
     f_js.write("const ctx = document.getElementById('{}').getContext('2d'); \n".format(nom_graph))
     f_js.write("const  %s = new Chart(ctx, { \n"%(nom_graph))
     f_js.write("   type: 'line', \n")
@@ -421,6 +420,12 @@ def Ecrire_Chartjs_graph(nom_script,nom_graph,titre_graph,data):
     f_js.write("                },\n")
     f_js.write("                scales: {\n")
     f_js.write("                    x: {\n")
+    f_js.write("                      title: {\n")
+    f_js.write("                    display: true,\n")
+    f_js.write("                    text: 'x',\n")
+    f_js.write("                    font: {\n")
+    f_js.write("                        size: 15\n")
+    f_js.write("                    }},\n")
     f_js.write("                        ticks: {\n")
     f_js.write("                            maxTicksLimit: 6,\n")
     f_js.write("                         }\n")
